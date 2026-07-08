@@ -1,0 +1,46 @@
+{
+  "umrah": [
+    {
+      "id": "u1",
+      "title": "Ihram",
+      "description": "Enter the state of Ihram and declare your intention at the Miqat.",
+      "arabic": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً",
+      "translation": "Here I am, O Allah, for Umrah.",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    },
+    {
+      "id": "u2",
+      "title": "Tawaf",
+      "description": "Circumambulate the Kaaba seven times counter-clockwise.",
+      "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+      "translation": "Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire.",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+    },
+    {
+      "id": "u3",
+      "title": "Sa’i",
+      "description": "Walk seven times between the hills of Safa and Marwa.",
+      "arabic": "إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ",
+      "translation": "Indeed, as-Safa and al-Marwah are among the symbols of Allah.",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+    }
+  ],
+  "hajj": [
+    {
+      "id": "h1",
+      "title": "Day 1: Mina",
+      "description": "Travel to Mina on the 8th of Dhul Hijjah and stay there for the night.",
+      "arabic": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ",
+      "translation": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am.",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    },
+    {
+      "id": "h2",
+      "title": "Day 2: Arafat",
+      "description": "Stay in Arafat on the 9th until sunset. This is the pinnacle of Hajj.",
+      "arabic": "لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+      "translation": "There is no god but Allah, alone, without partner. His is the sovereignty, and His is the praise, and He is over all things powerful.",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+    }
+  ]
+}
