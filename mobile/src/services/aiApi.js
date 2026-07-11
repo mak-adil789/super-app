@@ -1,7 +1,6 @@
 import axios from 'axios';
-import config from '../config/config';
 
-const BACKEND_API_BASE = `${config.API_URL}/ai`;
+const BACKEND_API_BASE = 'http://localhost:3000/api/ai';
 
 export const sendChatMessage = async (token, history, message) => {
   try {

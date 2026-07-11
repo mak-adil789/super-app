@@ -1,7 +1,6 @@
 import axios from 'axios';
-import config from '../config/config';
 
-const BACKEND_API_BASE = `${config.API_URL}/family`;
+const BACKEND_API_BASE = 'http://localhost:3000/api/family';
 
 export const createFamily = async (token, name) => {
   const response = await axios.post(`${BACKEND_API_BASE}/create`, { name }, {

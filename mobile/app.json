@@ -17,8 +17,7 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false,
-      "package": "com.mohdadilzone.mobile"
+      "predictiveBackGestureEnabled": false
     },
     "plugins": [
       "expo-router",
@@ -41,19 +40,6 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    },
-    "extra": {
-      "apiUrl": "http://localhost:3000/api",
-      "hadithApiUrl": "https://hadithapi.com/api/hadiths",
-      "hadithApiKey": "$2y$10$UaJt1Kly16i7kK1rJ0ZfduJb8nZ8xN6MhXyG0JcKzL3tO7Qy",
-      "prayerApiUrl": "https://api.aladhan.com/v1",
-      "quranApiUrl": "https://api.quran.com/api/v4",
-      "firebaseApiKey": "PLACEHOLDER_API_KEY",
-      "firebaseAuthDomain": "PLACEHOLDER_AUTH_DOMAIN",
-      "firebaseProjectId": "PLACEHOLDER_PROJECT_ID",
-      "firebaseStorageBucket": "PLACEHOLDER_STORAGE_BUCKET",
-      "firebaseMessagingSenderId": "PLACEHOLDER_MESSAGING_SENDER_ID",
-      "firebaseAppId": "PLACEHOLDER_APP_ID"
     }
   }
 }

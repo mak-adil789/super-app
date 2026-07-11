@@ -1,7 +1,6 @@
 import axios from 'axios';
-import config from '../config/config';
 
-const BACKEND_API_BASE = `${config.API_URL}/mosques`; // Adjust based on environment
+const BACKEND_API_BASE = 'http://localhost:3000/api/mosques'; // Adjust based on environment
 
 export const fetchNearbyMosques = async (token, lat, lng, radius = 5000) => {
   try {

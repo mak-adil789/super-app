@@ -1,9 +1,8 @@
 import { create } from 'zustand';
 import axios from 'axios';
 import { auth } from '../services/firebase';
-import config from '../config/config';
 
-const API_URL = config.API_URL; // Update with your server URL
+const API_URL = 'http://localhost:3000/api'; // Update with your server URL
 
 const useAuthStore = create((set, get) => ({
   user: null,

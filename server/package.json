@@ -8,7 +8,6 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma:generate": "npx prisma generate",
-    "postinstall": "npm run prisma:generate",
     "prisma:push": "npx prisma db push",
     "seed": "node prisma/seed.js"
   },

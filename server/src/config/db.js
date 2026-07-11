@@ -1,8 +1,7 @@
-import prismaPkg from '@prisma/client';
-const { PrismaClient } = prismaPkg;
+import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
-import pgPkg from 'pg';
-const { Pool } = pgPkg;
+import pkg from 'pg';
+const { Pool } = pkg;
 import dotenv from 'dotenv';
 
 dotenv.config();

@@ -1,7 +1,6 @@
 import axios from 'axios';
-import config from '../config/config';
 
-const ALADHAN_API_BASE = config.PRAYER_API_URL;
+const ALADHAN_API_BASE = 'https://api.aladhan.com/v1';
 
 export const fetchMonthlyPrayerTimes = async (latitude, longitude, method = 2) => {
   try {
