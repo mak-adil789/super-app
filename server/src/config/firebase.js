@@ -1,24 +1,7 @@
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
-import dotenv from 'dotenv';
+// This file was previously using firebase-admin which caused ERR_REQUIRE_ESM on Vercel.
+// Token verification has been moved to src/middleware/auth.js using the 'jose' library.
+// If you need other Firebase Admin features (like Messaging or Firestore),
+// consider using a compatible version or alternative approach.
 
-dotenv.config();
-
-const serviceAccount = {
-  project_id: process.env.FIREBASE_PROJECT_ID,
-  private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-  client_email: process.env.FIREBASE_CLIENT_EMAIL,
-};
-
-let app;
-if (!getApps().length) {
-  app = initializeApp({
-    credential: cert(serviceAccount),
-  });
-} else {
-  app = getApps()[0];
-}
-
-const auth = getAuth(app);
-
-export { app, auth };
+export const app = null;
+export const auth = null;
