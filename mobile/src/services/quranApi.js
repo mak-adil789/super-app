@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../config/config';
 
-const QURAN_API_BASE = 'https://api.quran.com/api/v4';
-const BACKEND_API_BASE = 'http://localhost:3000/api/quran'; // Adjust based on environment
+const QURAN_API_BASE = config.QURAN_API_URL;
+const BACKEND_API_BASE = `${config.API_URL}/quran`; // Adjust based on environment
 
 export const fetchChapters = async () => {
   const response = await axios.get(`${QURAN_API_BASE}/chapters?language=en`);

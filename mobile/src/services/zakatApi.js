@@ -2,8 +2,9 @@ import axios from 'axios';
 import { cacheDirectory, writeAsStringAsync, EncodingType } from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
 import { Buffer } from 'buffer';
+import config from '../config/config';
 
-const BACKEND_API_BASE = 'http://localhost:3000/api/zakat';
+const BACKEND_API_BASE = `${config.API_URL}/zakat`;
 
 export const fetchNisabPrices = async (token) => {
   const response = await axios.get(`${BACKEND_API_BASE}/nisab`, {

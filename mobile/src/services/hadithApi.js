@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../config/config';
 
-const HADITH_API_BASE = 'https://hadithapi.com/api/hadiths';
-const API_KEY = '$2y$10$UaJt1Kly16i7kK1rJ0ZfduJb8nZ8xN6MhXyG0JcKzL3tO7Qy';
+const HADITH_API_BASE = config.HADITH_API_URL;
+const API_KEY = config.HADITH_API_KEY;
 
 export const fetchDailyHadith = async () => {
   try {
