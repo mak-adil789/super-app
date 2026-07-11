@@ -1,0 +1,60 @@
+[
+  {
+    "id": "morning",
+    "title": "Morning Supplications",
+    "icon": "sunny-outline",
+    "duas": [
+      {
+        "id": "m1",
+        "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+        "transliteration": "Alhamdu lillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+        "translation": "All praise is for Allah who gave us life after causing us to die, and to Him is the resurrection."
+      },
+      {
+        "id": "m2",
+        "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
+        "transliteration": "Allahumma bika asbahna, wa bika amsayna, wa bika nahya, wa bika namutu wa ilayhin-nushur",
+        "translation": "O Allah, by You we enter the morning and by You we enter the evening, by You we live and by You we die, and to You is the Final Return."
+      }
+    ]
+  },
+  {
+    "id": "evening",
+    "title": "Evening Supplications",
+    "icon": "moon-outline",
+    "duas": [
+      {
+        "id": "e1",
+        "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
+        "transliteration": "Allahumma bika amsayna, wa bika asbahna, wa bika nahya, wa bika namutu wa ilayhil-masir",
+        "translation": "O Allah, by You we enter the evening and by You we enter the morning, by You we live and by You we die, and to You is the Final Return."
+      }
+    ]
+  },
+  {
+    "id": "travel",
+    "title": "Travel",
+    "icon": "airplane-outline",
+    "duas": [
+      {
+        "id": "t1",
+        "arabic": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",
+        "transliteration": "Subhanal-ladhi sakhkhara lana hadha wa ma kunna lahu muqrinina wa inna ila Rabbina lamunqalibun",
+        "translation": "Glory is to Him Who has provided this for us though we could never have had it by our efforts. Surely, unto our Lord we are returning."
+      }
+    ]
+  },
+  {
+    "id": "after-prayer",
+    "title": "After Prayer",
+    "icon": "time-outline",
+    "duas": [
+      {
+        "id": "ap1",
+        "arabic": "أَسْتَغْفِرُ اللَّهَ (ثَلاثَاً) اللَّهُمَّ أَنْتَ السَّلامُ، وَمِنْكَ السَّلامُ، تَبَارَكْتَ يَا ذَا الْجَلالِ وَالإِكْرَامِ",
+        "transliteration": "Astaghfirullah (three times). Allahumma Antas-Salamu wa minkas-salamu, tabarakta ya Dhal-Jalali wal-Ikram",
+        "translation": "I ask Allah for forgiveness (three times). O Allah, You are As-Salam and from You is all peace, blessed are You, O Possessor of majesty and honour."
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String   @id @default(uuid())
+  firebaseId    String   @unique
+  email         String   @unique
+  displayName   String?
+  photoURL      String?
+  role          Role     @default(USER)
+  bookmarks     QuranBookmark[]
+  progress      QuranProgress[]
+  familyId      String?
+  family        Family?  @relation(fields: [familyId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Family {
+  id          String   @id @default(uuid())
+  name        String
+  inviteCode  String   @unique
+  members     User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("families")
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  date        DateTime
+  location    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("events")
+}
+
+model Lecture {
+  id          String   @id @default(uuid())
+  title       String
+  speaker     String
+  date        DateTime
+  url         String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("lectures")
+}
+
+model Dua {
+  id              String   @id @default(uuid())
+  category        String
+  title           String
+  arabic          String
+  transliteration String?
+  translation     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("duas")
+}
+
+model QuranBookmark {
+  id        String   @id @default(uuid())
+  userId    String
+  surahId   Int
+  verseId   Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, surahId, verseId])
+  @@map("quran_bookmarks")
+}
+
+model QuranProgress {
+  id         String   @id @default(uuid())
+  userId     String
+  lastSurah  Int
+  lastVerse  Int
+  percentage Float
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@map("quran_progress")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

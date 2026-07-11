@@ -1,0 +1,424 @@
+# Task Management
+
+- [x] Research existing Authentication implementation
+- [x] Complete Module 1.1: Firebase Authentication
+- [x] Implement Module 2.1: Prayer Calculation & Offline Storage
+- [x] Implement Module 2.2: Qibla Compass
+- [x] Implement Module 3.1: Surah Index & Verses Reader
+- [x] Implement Module 4.1: Dua Book & Daily Hadith Widgets
+- [x] Implement Module 5.1: Digital Counter & Goals
+- [x] Implement Module 6.1: Mosque Locator (Maps Integration)
+- [x] Implement Module 7.1: Zakat Calculator & Exporter
+    - [x] Implement backend `zakatController.js` and `pdfGenerator.js`
+    - [x] Create `mobile/src/services/zakatApi.js`
+    - [x] Create `mobile/src/app/zakat/calculator.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 10.1: Admin Control Panel (API)
+    - [x] Update Prisma schema and push changes
+    - [x] Create `server/src/middleware/checkAdmin.js`
+    - [x] Implement CRUD controllers in `server/src/controllers/adminController.js`
+    - [x] Create `server/src/routes/adminRoutes.js`
+    - [x] Register routes in `server/src/app.js`
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 9.1: Family Accounts Dashboard
+    - [x] Update Prisma schema and push changes
+    - [x] Implement backend `familyController.js` and routes
+    - [x] Create `mobile/src/services/familyApi.js`
+    - [x] Create `mobile/src/app/profile/family.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 10.1: Admin Control Panel (API)
+    - [x] Update Prisma schema and push changes
+    - [x] Create `server/src/middleware/checkAdmin.js`
+    - [x] Implement CRUD controllers in `server/src/controllers/adminController.js`
+    - [x] Create `server/src/routes/adminRoutes.js`
+    - [x] Register routes in `server/src/app.js`
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 8.1: Fasting Calendars & Planners
+    - [x] Create `mobile/src/store/useRamadanStore.js`
+    - [x] Create `mobile/src/components/RamadanDashboard.jsx`
+    - [x] Create `mobile/src/app/ramadan/index.jsx`
+    - [x] Update Home screen navigation and integration
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 10.1: Admin Control Panel (API)
+    - [x] Update Prisma schema and push changes
+    - [x] Create `server/src/middleware/checkAdmin.js`
+    - [x] Implement CRUD controllers in `server/src/controllers/adminController.js`
+    - [x] Create `server/src/routes/adminRoutes.js`
+    - [x] Register routes in `server/src/app.js`
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 9.1: Family Accounts Dashboard
+    - [x] Update Prisma schema and push changes
+    - [x] Implement backend `familyController.js` and routes
+    - [x] Create `mobile/src/services/familyApi.js`
+    - [x] Create `mobile/src/app/profile/family.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 10.1: Admin Control Panel (API)
+    - [x] Update Prisma schema and push changes
+    - [x] Create `server/src/middleware/checkAdmin.js`
+    - [x] Implement CRUD controllers in `server/src/controllers/adminController.js`
+    - [x] Create `server/src/routes/adminRoutes.js`
+    - [x] Register routes in `server/src/app.js`
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 11.1: AI Assistant & Quran Tutor (Gemini AI)
+    - [x] Create `server/src/services/geminiClient.js`
+    - [x] Create `server/src/routes/aiRoutes.js`
+    - [x] Create `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/chat.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
+- [x] Implement Module 12.1: AI OCR Scanning (Timetable Extraction)
+    - [x] Create `server/src/controllers/ocrController.js`
+    - [x] Update `server/src/routes/aiRoutes.js`
+    - [x] Update `mobile/src/services/aiApi.js`
+    - [x] Create `mobile/src/app/ai/ocr-scanner.jsx`
+    - [x] Update Home screen navigation
+- [x] Verify implementation
+- [/] Implement Module 13.1: Hajj & Umrah Guide
+    - [ ] Create `mobile/src/assets/data/rituals.json`
+    - [ ] Create `mobile/src/components/AudioGuidePlayer.jsx`
+    - [ ] Create `mobile/src/app/hajj/guide.jsx`
+    - [ ] Update Home screen navigation
+- [ ] Verify implementation
