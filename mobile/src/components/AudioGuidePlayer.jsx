@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { ThemedText } from './themed-text';
+
+let Audio;
+try {
+  Audio = require('expo-av').Audio;
+} catch (e) {
+  console.warn('expo-av not found, audio playback will be disabled:', e.message);
+}
 
 export const AudioGuidePlayer = ({ url }) => {
   const [sound, setSound] = useState(null);
@@ -10,6 +16,10 @@ export const AudioGuidePlayer = ({ url }) => {
   const [loading, setLoading] = useState(false);
 
   async function playSound() {
+    if (!Audio) {
+      alert('Audio playback is not supported on this device/environment.');
+      return;
+    }
     if (sound) {
       if (isPlaying) {
         await sound.pauseAsync();

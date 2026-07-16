@@ -13,7 +13,6 @@ import useAuthStore from '../../store/useAuthStore';
 
 export default function OCRScanner() {
   const router = useRouter();
-  const { token } = useAuthStore();
   const [permission, requestPermission] = useCameraPermissions();
   const [scanning, setScanning] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -46,7 +45,8 @@ export default function OCRScanner() {
 
       setPreview(photo.uri);
 
-      const extractedData = await aiApi.uploadTimetableImage(token, photo.base64);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      const extractedData = await aiApi.uploadTimetableImage(freshToken, photo.base64);
 
       if (extractedData && extractedData.length > 0) {
         const monthGroups = {};

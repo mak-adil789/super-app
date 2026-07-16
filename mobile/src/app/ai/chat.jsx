@@ -12,7 +12,6 @@ import useAuthStore from '../../store/useAuthStore';
 
 export default function AIAssistantChat() {
   const router = useRouter();
-  const { token } = useAuthStore();
   const [messages, setMessages] = useState([
     { id: 'initial-1', role: 'ai', content: 'Assalamu Alaikum! I am your AI Assistant and Quran Tutor. How can I help you today?' }
   ]);
@@ -37,7 +36,8 @@ export default function AIAssistantChat() {
 
     try {
       const history = newMessages.slice(-5).map(m => ({ role: m.role, content: m.content }));
-      const response = await aiApi.sendChatMessage(token, history, text);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      const response = await aiApi.sendChatMessage(freshToken, history, text);
 
       setMessages(prev => [...prev, { id: `ai-${prev.length}`, role: 'ai', content: response }]);
     } catch (_error) {

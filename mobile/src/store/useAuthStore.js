@@ -16,7 +16,7 @@ const useAuthStore = create((set, get) => ({
 
   syncWithBackend: async (firebaseUser) => {
     try {
-      const token = await firebaseUser.getIdToken();
+      const token = await firebaseUser.getIdToken(true); // Force refresh to be sure
       const response = await axios.post(`${API_URL}/users/sync`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -26,6 +26,16 @@ const useAuthStore = create((set, get) => ({
       console.error('Error syncing with backend:', error);
       set({ isLoading: false });
     }
+  },
+
+  getFreshToken: async () => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const token = await currentUser.getIdToken();
+      set({ token });
+      return token;
+    }
+    return null;
   },
 
   logout: async () => {

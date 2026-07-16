@@ -11,7 +11,6 @@ import useAuthStore from '../../store/useAuthStore';
 
 export default function ZakatCalculator() {
   const router = useRouter();
-  const { token } = useAuthStore();
   const [nisab, setNisab] = useState(null);
   const [loading, setLoading] = useState(true);
   const [exporting, setExporting] = useState(false);
@@ -27,7 +26,9 @@ export default function ZakatCalculator() {
   useEffect(() => {
     const loadNisab = async () => {
       try {
-        const data = await fetchNisabPrices(token);
+        const freshToken = await useAuthStore.getState().getFreshToken();
+        if (!freshToken) return;
+        const data = await fetchNisabPrices(freshToken);
         setNisab(data);
       } catch (error) {
         console.error('Failed to load nisab:', error);
@@ -35,10 +36,8 @@ export default function ZakatCalculator() {
         setLoading(false);
       }
     };
-    if (token) {
-      loadNisab();
-    }
-  }, [token]);
+    loadNisab();
+  }, []);
 
   const totals = useMemo(() => {
     const cash = parseFloat(form.cash) || 0;
@@ -61,7 +60,8 @@ export default function ZakatCalculator() {
   const handleExport = async () => {
     setExporting(true);
     try {
-      await downloadZakatReport(token, totals);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      await downloadZakatReport(freshToken, totals);
     } catch (_error) {
       Alert.alert('Export Failed', 'Could not generate PDF report.');
     } finally {

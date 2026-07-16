@@ -56,7 +56,11 @@
     "react-native-gesture-handler": "~2.32.0",
     "react-native-maps": "1.27.2",
     "react-native-markdown-display": "^7.0.2",
+<<<<<<< HEAD
     "react-native-mmkv": "^4.3.2",
+=======
+    "react-native-mmkv": "2.12.2",
+>>>>>>> refs/remotes/origin/main
     "react-native-nitro-modules": "^0.36.1",
     "react-native-paper": "^5.15.3",
     "react-native-pdf": "^7.0.4",

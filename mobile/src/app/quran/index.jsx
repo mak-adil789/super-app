@@ -12,7 +12,6 @@ import useAuthStore from '../../store/useAuthStore';
 export default function QuranIndex() {
   const router = useRouter();
   const { chapters, fetchChapters, isLoading, syncUserData } = useQuranStore();
-  const { token } = useAuthStore();
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -20,8 +19,8 @@ export default function QuranIndex() {
   }, [fetchChapters]);
 
   useEffect(() => {
-    if (token) syncUserData(token);
-  }, [token, syncUserData]);
+    syncUserData();
+  }, [syncUserData]);
 
   const filteredChapters = chapters.filter(c =>
     c.name_simple.toLowerCase().includes(search.toLowerCase()) ||

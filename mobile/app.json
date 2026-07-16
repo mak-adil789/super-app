@@ -44,10 +44,10 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": false
     },
     "extra": {
-      "apiUrl": "http://localhost:3000/api",
+      "apiUrl": "https://super-app-phi-sable.vercel.app/api",
       "hadithApiUrl": "https://hadithapi.com/api/hadiths",
       "hadithApiKey": "$2y$10$UaJt1Kly16i7kK1rJ0ZfduJb8nZ8xN6MhXyG0JcKzL3tO7Qy",
       "prayerApiUrl": "https://api.aladhan.com/v1",

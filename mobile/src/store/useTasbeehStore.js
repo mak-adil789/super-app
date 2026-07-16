@@ -1,9 +1,19 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { MMKV } from 'react-native-mmkv';
 import dayjs from 'dayjs';
 
-const storage = new MMKV();
+let storage;
+try {
+  const { MMKV } = require('react-native-mmkv');
+  storage = new MMKV();
+} catch (e) {
+  console.warn('MMKV not found, falling back to basic storage:', e.message);
+  storage = {
+    set: (name, value) => { },
+    getString: (name) => null,
+    delete: (name) => { },
+  };
+}
 
 const mmkvStorage = {
   setItem: (name, value) => storage.set(name, value),

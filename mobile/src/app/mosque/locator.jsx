@@ -13,7 +13,6 @@ import useAuthStore from '../../store/useAuthStore';
 
 export default function MosqueLocator() {
   const router = useRouter();
-  const { token } = useAuthStore();
   const { location, loading: locLoading } = useLocation();
   const [mosques, setMosques] = useState([]);
   const [selectedMosque, setSelectedMosque] = useState(null);
@@ -24,11 +23,13 @@ export default function MosqueLocator() {
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
   const loadMosques = useCallback(async () => {
-    if (!location || !token) return;
+    if (!location) return;
     setLoading(true);
     try {
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      if (!freshToken) return;
       const data = await fetchNearbyMosques(
-        token,
+        freshToken,
         location.coords.latitude,
         location.coords.longitude
       );
@@ -38,7 +39,7 @@ export default function MosqueLocator() {
     } finally {
       setLoading(false);
     }
-  }, [location, token]);
+  }, [location]);
 
   useEffect(() => {
     // Wrap in a microtask/timer to avoid synchronous render warning
