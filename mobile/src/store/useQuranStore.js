@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import * as quranApi from '../services/quranApi';
+import useAuthStore from './useAuthStore';
 
 const useQuranStore = create((set, get) => ({
   chapters: [],
@@ -18,7 +19,8 @@ const useQuranStore = create((set, get) => ({
     }
   },
 
-  syncUserData: async (token) => {
+  syncUserData: async () => {
+    const token = await useAuthStore.getState().getFreshToken();
     if (!token) return;
     try {
       const [bookmarks, progress] = await Promise.all([
@@ -31,7 +33,8 @@ const useQuranStore = create((set, get) => ({
     }
   },
 
-  toggleBookmark: async (token, surahId, verseId) => {
+  toggleBookmark: async (surahId, verseId) => {
+    const token = await useAuthStore.getState().getFreshToken();
     if (!token) return;
     const { bookmarks } = get();
     const existing = bookmarks.find(b => b.surahId === surahId && b.verseId === verseId);
@@ -49,7 +52,8 @@ const useQuranStore = create((set, get) => ({
     }
   },
 
-  updateProgress: async (token, lastSurah, lastVerse, totalVerses) => {
+  updateProgress: async (lastSurah, lastVerse, totalVerses) => {
+    const token = await useAuthStore.getState().getFreshToken();
     if (!token) return;
     const percentage = (lastVerse / totalVerses) * 100;
     try {

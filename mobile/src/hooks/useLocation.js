@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import * as Location from 'expo-location';
+
+let Location;
+try {
+  Location = require('expo-location');
+} catch (e) {
+  console.warn('expo-location not found:', e.message);
+}
 
 export const useLocation = () => {
   const [location, setLocation] = useState(null);
@@ -7,6 +13,11 @@ export const useLocation = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!Location) {
+      setErrorMsg('Location services not available');
+      setLoading(false);
+      return;
+    }
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {

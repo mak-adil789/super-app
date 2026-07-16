@@ -17,7 +17,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.mak401.mobile"
     },
     "plugins": [
       "expo-router",
@@ -39,20 +40,24 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": false
     },
     "extra": {
-      "apiUrl": "http://localhost:3000/api",
+      "apiUrl": "https://super-app-phi-sable.vercel.app/api",
       "hadithApiUrl": "https://hadithapi.com/api/hadiths",
       "hadithApiKey": "$2y$10$UaJt1Kly16i7kK1rJ0ZfduJb8nZ8xN6MhXyG0JcKzL3tO7Qy",
       "prayerApiUrl": "https://api.aladhan.com/v1",
       "quranApiUrl": "https://api.quran.com/api/v4",
-      "firebaseApiKey": "PLACEHOLDER_API_KEY",
-      "firebaseAuthDomain": "PLACEHOLDER_AUTH_DOMAIN",
-      "firebaseProjectId": "PLACEHOLDER_PROJECT_ID",
-      "firebaseStorageBucket": "PLACEHOLDER_STORAGE_BUCKET",
-      "firebaseMessagingSenderId": "PLACEHOLDER_MESSAGING_SENDER_ID",
-      "firebaseAppId": "PLACEHOLDER_APP_ID"
+      "firebaseApiKey": "AIzaSyCT8uxFXSNtlexoxK_rhzjl4VeIgzE6toA",
+      "firebaseAuthDomain": "super-app-81f2c.firebaseapp.com",
+      "firebaseProjectId": "super-app-81f2c",
+      "firebaseStorageBucket": "super-app-81f2c.firebasestorage.app",
+      "firebaseMessagingSenderId": "267857536646",
+      "firebaseAppId": "1:267857536646:web:be502b3e70669d65dd5307",
+      "router": {},
+      "eas": {
+        "projectId": "daa7a9c9-149b-4f49-abab-a8afe90a5a69"
+      }
     }
   }
 }

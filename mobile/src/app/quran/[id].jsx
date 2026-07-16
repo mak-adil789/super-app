@@ -19,7 +19,6 @@ export default function SurahReader() {
   const [hasMore, setHasMore] = useState(true);
 
   const { chapters, bookmarks, toggleBookmark, updateProgress } = useQuranStore();
-  const { token } = useAuthStore();
 
   const surah = chapters.find(c => c.id.toString() === id);
 
@@ -57,7 +56,7 @@ export default function SurahReader() {
     const verseIndex = Math.floor((percentage / 100) * surah.verses_count) + 1;
 
     if (verseIndex > 0 && verseIndex <= surah.verses_count) {
-      updateProgress(token, parseInt(id), verseIndex, surah.verses_count);
+      updateProgress(parseInt(id), verseIndex, surah.verses_count);
     }
   };
 
@@ -70,7 +69,7 @@ export default function SurahReader() {
           <View style={styles.verseBadge}>
             <ThemedText style={styles.verseNumber}>{id}:{item.verse_number}</ThemedText>
           </View>
-          <TouchableOpacity onPress={() => toggleBookmark(token, parseInt(id), item.verse_number)}>
+          <TouchableOpacity onPress={() => toggleBookmark(parseInt(id), item.verse_number)}>
             <Ionicons
               name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
               size={24}
@@ -84,7 +83,7 @@ export default function SurahReader() {
         </ThemedText>
 
         <ThemedText style={styles.translationText}>
-          {item.translations[0].text.replace(/ <sup>.*?<\/sup>/g, '')}
+          {item.translations?.[0]?.text?.replace(/ <sup>.*?<\/sup>/g, '') || 'Translation not available'}
         </ThemedText>
       </View>
     );

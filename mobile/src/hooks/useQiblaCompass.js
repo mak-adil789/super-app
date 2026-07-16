@@ -1,5 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Magnetometer } from 'expo-sensors';
+
+let Magnetometer;
+try {
+  Magnetometer = require('expo-sensors').Magnetometer;
+} catch (e) {
+  console.warn('expo-sensors not found:', e.message);
+}
 
 const KAABA_COORDS = {
   latitude: 21.4225,
@@ -42,6 +48,7 @@ export const useQiblaCompass = (userLatitude, userLongitude) => {
   }, [userLatitude, userLongitude]);
 
   useEffect(() => {
+    if (!Magnetometer) return;
     let subscription = null;
 
     const _subscribe = () => {

@@ -1,6 +1,17 @@
-import * as SQLite from 'expo-sqlite';
+let SQLite;
+let db;
 
-const db = SQLite.openDatabaseSync('prayer_times.db');
+try {
+  SQLite = require('expo-sqlite');
+  db = SQLite.openDatabaseSync('prayer_times.db');
+} catch (e) {
+  console.warn('expo-sqlite not found, database storage will be disabled:', e.message);
+  db = {
+    execSync: () => { },
+    runSync: () => { },
+    getFirstSync: () => null,
+  };
+}
 
 export const initDb = () => {
   db.execSync(`

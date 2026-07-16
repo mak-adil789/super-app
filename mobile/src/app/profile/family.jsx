@@ -11,7 +11,6 @@ import useAuthStore from '../../store/useAuthStore';
 
 export default function FamilyDashboard() {
   const router = useRouter();
-  const { token } = useAuthStore();
   const [family, setFamily] = useState(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
@@ -22,7 +21,9 @@ export default function FamilyDashboard() {
   const loadFamily = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await familyApi.fetchFamilyData(token);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      if (!freshToken) return;
+      const data = await familyApi.fetchFamilyData(freshToken);
       setFamily(data);
     } catch (error) {
       console.warn('No family found or error:', error.message);
@@ -30,22 +31,21 @@ export default function FamilyDashboard() {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
-    if (token) {
-      const timer = setTimeout(() => {
-        loadFamily();
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-  }, [token, loadFamily]);
+    const timer = setTimeout(() => {
+      loadFamily();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [loadFamily]);
 
   const handleCreate = async () => {
     if (!familyName) return Alert.alert('Error', 'Please enter a family name');
     setActionLoading(true);
     try {
-      const data = await familyApi.createFamily(token, familyName);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      const data = await familyApi.createFamily(freshToken, familyName);
       setFamily(data);
       Alert.alert('Success', 'Family group created!');
     } catch (error) {
@@ -59,7 +59,8 @@ export default function FamilyDashboard() {
     if (!inviteCode) return Alert.alert('Error', 'Please enter an invite code');
     setActionLoading(true);
     try {
-      const data = await familyApi.joinFamily(token, inviteCode);
+      const freshToken = await useAuthStore.getState().getFreshToken();
+      const data = await familyApi.joinFamily(freshToken, inviteCode);
       setFamily(data);
       Alert.alert('Success', 'Joined family group!');
     } catch (error) {
@@ -77,7 +78,8 @@ export default function FamilyDashboard() {
         style: 'destructive',
         onPress: async () => {
           try {
-            await familyApi.leaveFamily(token);
+            const freshToken = await useAuthStore.getState().getFreshToken();
+            await familyApi.leaveFamily(freshToken);
             setFamily(null);
           } catch (_error) {
             Alert.alert('Error', 'Failed to leave family');
