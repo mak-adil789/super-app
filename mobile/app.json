@@ -8,7 +8,11 @@
     "scheme": "mobile",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.mak401.mobile",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -54,6 +58,7 @@
       "firebaseStorageBucket": "super-app-81f2c.firebasestorage.app",
       "firebaseMessagingSenderId": "267857536646",
       "firebaseAppId": "1:267857536646:web:be502b3e70669d65dd5307",
+      "firebaseMeasurementId": "G-5YYENKTYLQ",
       "router": {},
       "eas": {
         "projectId": "daa7a9c9-149b-4f49-abab-a8afe90a5a69"
