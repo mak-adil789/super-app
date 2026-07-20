@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,23 +8,38 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import * as quranApi from '../../services/quranApi';
 import useQuranStore from '../../store/useQuranStore';
-import useAuthStore from '../../store/useAuthStore';
 
-export default function SurahReader() {
-  const { id } = useLocalSearchParams();
+export default function QuranReader() {
+  const { id, type } = useLocalSearchParams();
   const router = useRouter();
   const [verses, setVerses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [settingsVisible, setSettingsVisible] = useState(false);
 
-  const { chapters, bookmarks, toggleBookmark, updateProgress } = useQuranStore();
+  const {
+    chapters,
+    juzList,
+    bookmarks,
+    toggleBookmark,
+    updateProgress,
+    fontSize,
+    setFontSize,
+    translationId,
+    setTranslation
+  } = useQuranStore();
 
-  const surah = chapters.find(c => c.id.toString() === id);
+  const title = type === 'surah'
+    ? chapters.find(c => c.id.toString() === id)?.name_simple || 'Surah'
+    : `Juz ${id}`;
 
   const loadVerses = useCallback(async (pageNum) => {
     try {
-      const data = await quranApi.fetchVerses(id, pageNum);
+      const data = type === 'surah'
+        ? await quranApi.fetchVerses(id, pageNum, translationId)
+        : await quranApi.fetchVersesByJuz(id, pageNum, translationId);
+
       if (data.verses.length === 0) {
         setHasMore(false);
       } else {
@@ -35,76 +50,67 @@ export default function SurahReader() {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, type, translationId]);
 
   useEffect(() => {
-    // Using a timeout to move setState out of the synchronous render/effect cycle
-    const timer = setTimeout(() => {
-      loadVerses(1);
-    }, 0);
-    return () => clearTimeout(timer);
-  }, [loadVerses]);
-
-  const handleScroll = (event) => {
-    if (!surah) return;
-    const scrollY = event.nativeEvent.contentOffset.y;
-    const contentHeight = event.nativeEvent.contentSize.height;
-    const viewHeight = event.nativeEvent.layoutMeasurement.height;
-
-    // Approximate percentage
-    const percentage = (scrollY / (contentHeight - viewHeight)) * 100;
-    const verseIndex = Math.floor((percentage / 100) * surah.verses_count) + 1;
-
-    if (verseIndex > 0 && verseIndex <= surah.verses_count) {
-      updateProgress(parseInt(id), verseIndex, surah.verses_count);
-    }
-  };
+    (async () => {
+      setLoading(true);
+      setVerses([]);
+      setPage(1);
+      setHasMore(true);
+      await loadVerses(1);
+    })();
+  }, [loadVerses, translationId]);
 
   const renderVerseItem = ({ item }) => {
     const isBookmarked = bookmarks.some(b => b.surahId === parseInt(id) && b.verseId === item.verse_number);
 
     return (
-      <View style={styles.verseItem}>
-        <View style={styles.verseHeader}>
-          <View style={styles.verseBadge}>
-            <ThemedText style={styles.verseNumber}>{id}:{item.verse_number}</ThemedText>
+      <View style={styles.verseContainer}>
+        {/* Arabic Block - Classic Light Green */}
+        <View style={styles.arabicBlock}>
+          <View style={styles.verseHeader}>
+            <View style={styles.verseBadge}>
+              <ThemedText style={styles.verseNumber}>{item.verse_key}</ThemedText>
+            </View>
+            <TouchableOpacity onPress={() => toggleBookmark(parseInt(id), item.verse_number)}>
+              <Ionicons
+                name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+                size={22}
+                color="#2E7D32"
+              />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={() => toggleBookmark(parseInt(id), item.verse_number)}>
-            <Ionicons
-              name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
-              size={24}
-              color={isBookmarked ? '#007AFF' : '#888'}
-            />
-          </TouchableOpacity>
+          <ThemedText style={[styles.arabicText, { fontSize: fontSize * 1.2 }]}>
+            {item.text_uthmani}
+          </ThemedText>
         </View>
 
-        <ThemedText style={styles.arabicText}>
-          {item.text_uthmani}
-        </ThemedText>
-
-        <ThemedText style={styles.translationText}>
-          {item.translations?.[0]?.text?.replace(/ <sup>.*?<\/sup>/g, '') || 'Translation not available'}
-        </ThemedText>
+        {/* Translation Block - Clean White */}
+        <View style={styles.translationBlock}>
+          <ThemedText style={[styles.translationText, { fontSize }]}>
+            {item.translations?.[0]?.text?.replace(/ <sup>.*?<\/sup>/g, '') || 'Translation not available'}
+          </ThemedText>
+        </View>
       </View>
     );
   };
 
   return (
     <ThemedView className="flex-1 bg-bg-light dark:bg-bg-dark">
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => router.back()}>
             <Ionicons name="arrow-back" size={24} color="gray" />
           </TouchableOpacity>
-          <View style={{ alignItems: 'center' }}>
-            <ThemedText type="subtitle">{surah?.name_simple}</ThemedText>
-            <ThemedText style={styles.headerArabic}>{surah?.name_arabic}</ThemedText>
-          </View>
-          <View style={{ width: 24 }} />
+          <ThemedText type="subtitle" style={styles.headerTitle}>{title}</ThemedText>
+          <TouchableOpacity onPress={() => setSettingsVisible(true)}>
+            <Ionicons name="settings-outline" size={24} color="gray" />
+          </TouchableOpacity>
         </View>
 
         {loading && page === 1 ? (
-          <ActivityIndicator size="large" color="#007AFF" style={{ marginTop: 50 }} />
+          <ActivityIndicator size="large" color="#2E7D32" style={{ marginTop: 50 }} />
         ) : (
           <FlatList
             data={verses}
@@ -119,10 +125,57 @@ export default function SurahReader() {
               }
             }}
             onEndReachedThreshold={0.5}
-            onMomentumScrollEnd={handleScroll}
-            ListFooterComponent={hasMore ? <ActivityIndicator color="#007AFF" style={{ padding: 20 }} /> : null}
+            ListFooterComponent={hasMore ? <ActivityIndicator color="#2E7D32" style={{ padding: 20 }} /> : null}
           />
         )}
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={settingsVisible}
+          onRequestClose={() => setSettingsVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <ThemedText style={styles.modalTitle}>Reader Settings</ThemedText>
+                <TouchableOpacity onPress={() => setSettingsVisible(false)}>
+                  <Ionicons name="close" size={24} color="gray" />
+                </TouchableOpacity>
+              </View>
+
+              <ScrollView>
+                <ThemedText style={styles.sectionTitle}>Font Size ({fontSize}px)</ThemedText>
+                <View style={styles.fontSizeRow}>
+                  <TouchableOpacity style={styles.sizeBtn} onPress={() => setFontSize(Math.max(16, fontSize - 2))}>
+                    <Ionicons name="remove-circle-outline" size={30} color="#2E7D32" />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.sizeBtn} onPress={() => setFontSize(Math.min(48, fontSize + 2))}>
+                    <Ionicons name="add-circle-outline" size={30} color="#2E7D32" />
+                  </TouchableOpacity>
+                </View>
+
+                <ThemedText style={styles.sectionTitle}>Translation Language</ThemedText>
+                <View style={styles.langList}>
+                  {Object.entries(quranApi.TRANSLATIONS).map(([key, value]) => (
+                    <TouchableOpacity
+                      key={key}
+                      style={[styles.langBtn, translationId === value && styles.activeLang]}
+                      onPress={() => {
+                        setTranslation(value);
+                        setSettingsVisible(false);
+                      }}
+                    >
+                      <ThemedText style={[styles.langText, translationId === value && styles.activeLangText]}>
+                        {key.toUpperCase()}
+                      </ThemedText>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
       </SafeAreaView>
     </ThemedView>
   );
@@ -136,52 +189,114 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 15,
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.05)',
   },
-  headerArabic: {
-    fontSize: 12,
-    color: '#007AFF',
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   list: {
-    padding: 20,
+    backgroundColor: '#F5F5F5',
   },
-  verseItem: {
-    marginBottom: 30,
-    paddingBottom: 20,
+  verseContainer: {
+    marginBottom: 8,
+  },
+  arabicBlock: {
+    backgroundColor: '#F0FFF0', // Light green
+    padding: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#2E7D32',
+  },
+  translationBlock: {
+    backgroundColor: '#FFFFFF',
+    padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
+    borderBottomColor: '#EEEEEE',
   },
   verseHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   verseBadge: {
-    backgroundColor: 'rgba(0,122,255,0.1)',
+    backgroundColor: 'rgba(46, 125, 50, 0.1)',
     paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
   },
   verseNumber: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#007AFF',
+    fontSize: 11,
+    color: '#2E7D32',
+    fontWeight: '600',
   },
   arabicText: {
-    fontSize: 28,
-    lineHeight: 50,
     textAlign: 'right',
-    fontFamily: 'System', // In a real app, use a specific Uthmani font
-    marginBottom: 15,
-    color: '#000',
+    lineHeight: 55,
+    color: '#1B5E20',
+    fontFamily: 'System',
   },
   translationText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#444',
+    lineHeight: 30,
+    color: '#333',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    padding: 25,
+    maxHeight: '60%',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  sectionTitle: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 15,
+    marginTop: 10,
+    fontWeight: 'bold',
+  },
+  fontSizeRow: {
+    flexDirection: 'row',
+    gap: 20,
+    marginBottom: 20,
+  },
+  langList: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  langBtn: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 12,
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#EEE',
+  },
+  activeLang: {
+    backgroundColor: '#2E7D32',
+    borderColor: '#1B5E20',
+  },
+  langText: {
+    fontWeight: '600',
+    color: '#666',
+  },
+  activeLangText: {
+    color: 'white',
   },
 });

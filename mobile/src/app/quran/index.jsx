@@ -7,16 +7,17 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import useQuranStore from '../../store/useQuranStore';
-import useAuthStore from '../../store/useAuthStore';
 
 export default function QuranIndex() {
   const router = useRouter();
-  const { chapters, fetchChapters, isLoading, syncUserData } = useQuranStore();
+  const { chapters, juzList, fetchChapters, fetchJuzList, isLoading, syncUserData } = useQuranStore();
   const [search, setSearch] = useState('');
+  const [tab, setTab] = useState('surah'); // 'surah' or 'juz'
 
   useEffect(() => {
     fetchChapters();
-  }, [fetchChapters]);
+    fetchJuzList();
+  }, [fetchChapters, fetchJuzList]);
 
   useEffect(() => {
     syncUserData();
@@ -30,13 +31,13 @@ export default function QuranIndex() {
   const renderSurahItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => router.push(`/quran/${item.id}`)}
+      onPress={() => router.push({ pathname: `/quran/${item.id}`, params: { type: 'surah' } })}
     >
       <View style={styles.surahNumber}>
         <ThemedText style={styles.numberText}>{item.id}</ThemedText>
       </View>
       <View style={styles.surahInfo}>
-        <ThemedText type="subtitle" style={styles.nameSimple}>{item.name_simple}</ThemedText>
+        <ThemedText style={styles.nameSimple}>{item.name_simple}</ThemedText>
         <ThemedText style={styles.revelationInfo}>
           {item.revelation_place.toUpperCase()} • {item.verses_count} VERSES
         </ThemedText>
@@ -44,6 +45,24 @@ export default function QuranIndex() {
       <View style={styles.surahArabic}>
         <ThemedText style={styles.nameArabic}>{item.name_arabic}</ThemedText>
       </View>
+    </TouchableOpacity>
+  );
+
+  const renderJuzItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => router.push({ pathname: `/quran/${item.juz_number}`, params: { type: 'juz' } })}
+    >
+      <View style={styles.surahNumber}>
+        <ThemedText style={styles.numberText}>{item.juz_number}</ThemedText>
+      </View>
+      <View style={styles.surahInfo}>
+        <ThemedText style={styles.nameSimple}>Juz {item.juz_number}</ThemedText>
+        <ThemedText style={styles.revelationInfo}>
+          {Object.keys(item.verse_mapping).length} SURAHS
+        </ThemedText>
+      </View>
+      <Ionicons name="chevron-forward" size={20} color="#007AFF" />
     </TouchableOpacity>
   );
 
@@ -58,23 +77,40 @@ export default function QuranIndex() {
           <View style={{ width: 24 }} />
         </View>
 
-        <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search Surah..."
-            value={search}
-            onChangeText={setSearch}
-          />
+        <View style={styles.tabContainer}>
+          <TouchableOpacity
+            style={[styles.tabButton, tab === 'surah' && styles.activeTab]}
+            onPress={() => setTab('surah')}
+          >
+            <ThemedText style={[styles.tabText, tab === 'surah' && styles.activeTabText]}>SURAH</ThemedText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tabButton, tab === 'juz' && styles.activeTab]}
+            onPress={() => setTab('juz')}
+          >
+            <ThemedText style={[styles.tabText, tab === 'juz' && styles.activeTabText]}>PARAH</ThemedText>
+          </TouchableOpacity>
         </View>
+
+        {tab === 'surah' && (
+          <View style={styles.searchContainer}>
+            <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search Surah..."
+              value={search}
+              onChangeText={setSearch}
+            />
+          </View>
+        )}
 
         {isLoading ? (
           <ActivityIndicator size="large" color="#007AFF" style={{ marginTop: 50 }} />
         ) : (
           <FlatList
-            data={filteredChapters}
-            renderItem={renderSurahItem}
-            keyExtractor={(item) => item.id.toString()}
+            data={tab === 'surah' ? filteredChapters : juzList}
+            renderItem={tab === 'surah' ? renderSurahItem : renderJuzItem}
+            keyExtractor={(item) => (tab === 'surah' ? item.id.toString() : item.juz_number.toString())}
             contentContainerStyle={styles.list}
             showsVerticalScrollIndicator={false}
           />
@@ -95,6 +131,36 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
   },
+  tabContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginVertical: 10,
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 12,
+    padding: 4,
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 8,
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  activeTab: {
+    backgroundColor: 'white',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  tabText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#888',
+  },
+  activeTabText: {
+    color: '#007AFF',
+  },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -113,6 +179,7 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 20,
+    paddingBottom: 20,
   },
   item: {
     flexDirection: 'row',
@@ -122,9 +189,9 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(0,0,0,0.05)',
   },
   surahNumber: {
-    width: 35,
-    height: 35,
-    borderRadius: 8,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: 'rgba(0,122,255,0.1)',
     justifyContent: 'center',
     alignItems: 'center',
@@ -138,6 +205,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   nameSimple: {
+    fontSize: 16,
     fontWeight: 'bold',
   },
   revelationInfo: {

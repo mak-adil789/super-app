@@ -94,14 +94,6 @@ export default function HomeScreen() {
                 <Ionicons name="heart" size={24} color="white" />
                 <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Duas</ThemedText>
               </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => router.push('/tasbeeh')}
-                style={{ flex: 1, backgroundColor: '#FF9500', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="finger-print" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Tasbeeh</ThemedText>
-              </TouchableOpacity>
             </View>
 
             <View style={{ width: '100%', marginTop: 12 }}>
@@ -114,33 +106,6 @@ export default function HomeScreen() {
               </TouchableOpacity>
             </View>
 
-            <View style={{ width: '100%', marginTop: 12 }}>
-              <TouchableOpacity
-                onPress={() => router.push('/mosque/locator')}
-                style={{ flex: 1, backgroundColor: '#8E8E93', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="location" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Find Nearby Mosques</ThemedText>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', gap: 12, marginTop: 12, width: '100%' }}>
-              <TouchableOpacity
-                onPress={() => router.push('/zakat/calculator')}
-                style={{ flex: 1.5, backgroundColor: '#AF52DE', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="calculator" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Zakat</ThemedText>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => router.push('/profile/family')}
-                style={{ flex: 1, backgroundColor: '#FF2D55', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="people" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Family</ThemedText>
-              </TouchableOpacity>
-            </View>
             <View style={{ width: '100%', marginTop: 12 }}>
               <TouchableOpacity
                 onPress={() => router.push('/hajj/guide')}
@@ -169,15 +134,6 @@ export default function HomeScreen() {
             ) : (
               <ThemedText>Could not load Hadith</ThemedText>
             )}
-            <View style={{ width: '100%', marginTop: 12 }}>
-              <TouchableOpacity
-                onPress={() => router.push('/hajj/guide')}
-                style={{ flex: 1, backgroundColor: '#FFCC00', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="map" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Hajj & Umrah Guide</ThemedText>
-              </TouchableOpacity>
-            </View>
           </ThemedView>
 
           {(locLoading || isLoading) && <ActivityIndicator size="large" color="#007AFF" />}
@@ -191,30 +147,12 @@ export default function HomeScreen() {
             ) : (
               !isLoading && <ThemedText className="text-center">No prayer times available</ThemedText>
             )}
-            <View style={{ width: '100%', marginTop: 12 }}>
-              <TouchableOpacity
-                onPress={() => router.push('/hajj/guide')}
-                style={{ flex: 1, backgroundColor: '#FFCC00', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="map" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Hajj & Umrah Guide</ThemedText>
-              </TouchableOpacity>
-            </View>
           </ThemedView>
 
           <ThemedView className="mt-6 p-4 rounded-2xl bg-el-light dark:bg-el-dark">
             <ThemedText className="text-xs text-center text-txt-sec-light dark:text-txt-sec-dark">
               {location ? `Location: ${location.coords.latitude.toFixed(2)}, ${location.coords.longitude.toFixed(2)}` : 'Detecting location...'}
             </ThemedText>
-            <View style={{ width: '100%', marginTop: 12 }}>
-              <TouchableOpacity
-                onPress={() => router.push('/hajj/guide')}
-                style={{ flex: 1, backgroundColor: '#FFCC00', padding: 20, borderRadius: 16, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 10 }}
-              >
-                <Ionicons name="map" size={24} color="white" />
-                <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>Hajj & Umrah Guide</ThemedText>
-              </TouchableOpacity>
-            </View>
           </ThemedView>
         </ScrollView>
       </SafeAreaView>

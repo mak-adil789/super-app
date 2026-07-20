@@ -13,12 +13,12 @@ export const useLocation = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!Location) {
-      setErrorMsg('Location services not available');
-      setLoading(false);
-      return;
-    }
     (async () => {
+      if (!Location) {
+        setErrorMsg('Location services not available');
+        setLoading(false);
+        return;
+      }
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
@@ -27,10 +27,21 @@ export const useLocation = () => {
       }
 
       try {
-        let currentLocation = await Location.getCurrentPositionAsync({});
+        let currentLocation = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+        });
         setLocation(currentLocation);
       } catch (_error) {
-        setErrorMsg('Could not fetch location');
+        try {
+          let lastKnown = await Location.getLastKnownPositionAsync({});
+          if (lastKnown) {
+            setLocation(lastKnown);
+          } else {
+            setErrorMsg('Could not fetch location');
+          }
+        } catch (_innerError) {
+          setErrorMsg('Could not fetch location');
+        }
       } finally {
         setLoading(false);
       }

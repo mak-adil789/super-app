@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 4,
+    lineHeight: 30,
   },
   progressContainer: {
     width: '100%',
@@ -191,6 +192,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     fontWeight: 'bold',
     color: '#FFF',
+    lineHeight: 90,
   },
   tapPrompt: {
     fontSize: 12,

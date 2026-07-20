@@ -4,17 +4,36 @@ import useAuthStore from './useAuthStore';
 
 const useQuranStore = create((set, get) => ({
   chapters: [],
+  juzList: [],
   bookmarks: [],
   progress: null,
   isLoading: false,
+  fontSize: 24,
+  translationId: quranApi.TRANSLATIONS.english,
+
+  setFontSize: (size) => set({ fontSize: size }),
+  setTranslation: (id) => set({ translationId: id }),
 
   fetchChapters: async () => {
+    if (get().chapters.length > 0) return;
     set({ isLoading: true });
     try {
       const chapters = await quranApi.fetchChapters();
       set({ chapters, isLoading: false });
     } catch (error) {
       console.error('Error fetching chapters:', error);
+      set({ isLoading: false });
+    }
+  },
+
+  fetchJuzList: async () => {
+    if (get().juzList.length > 0) return;
+    set({ isLoading: true });
+    try {
+      const juzs = await quranApi.fetchJuzList();
+      set({ juzList: juzs, isLoading: false });
+    } catch (error) {
+      console.error('Error fetching juz list:', error);
       set({ isLoading: false });
     }
   },

@@ -72,10 +72,14 @@ const usePrayerStore = create((set, get) => ({
     const now = dayjs();
     const times = Object.entries(prayerTimes)
       .filter(([name]) => name !== 'Sunrise')
-      .map(([name, time]) => ({
-        name,
-        time: dayjs(`${now.format('YYYY-MM-DD')} ${time}`),
-      }))
+      .map(([name, time]) => {
+        // Sanitize time string (e.g., "04:37 (PDT)" -> "04:37")
+        const cleanTime = time.split(' ')[0];
+        return {
+          name,
+          time: dayjs(`${now.format('YYYY-MM-DD')} ${cleanTime}`, 'YYYY-MM-DD HH:mm'),
+        };
+      })
       .sort((a, b) => a.time.diff(b.time));
 
     let next = times.find(t => t.time.isAfter(now));
